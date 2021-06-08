@@ -37,6 +37,14 @@
                     <materialDesign:PackIcon Kind="Keyboard" Foreground="White" HorizontalAlignment="Center" Width="40" Height="30"/>
                 </StackPanel>
             </Button>
+
+
+            <Button BorderBrush="White" Background="{x:Null}" MinHeight="50" Command="{Binding NavigateCloseProgramCommand}" Margin="25,0,0,0">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Label Content="Close Program" Foreground="White"/>
+                    <materialDesign:PackIcon Kind="Close" Foreground="White" HorizontalAlignment="Center" Width="40" Height="30"/>
+                </StackPanel>
+            </Button>
         </StackPanel>
 
     </Grid>

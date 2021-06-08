@@ -8,22 +8,22 @@
         xmlns:views="clr-namespace:Personal_GUI.Views"
         xmlns:local="clr-namespace:Personal_GUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="Black" WindowStyle="None" >
+        Title="MainWindow" Height="500" Width="900" Background="Black" WindowStyle="None">
 
     <Grid>
         <Grid.ColumnDefinitions>
 
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
 
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="35*"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="85*"/>
             <RowDefinition Height="85*"/>
             <RowDefinition Height="85*"/>
@@ -83,6 +83,10 @@
 
                 <DataTemplate DataType="{x:Type viewmodels:AutoTyperViewModel}">
                     <views:AutoTyper/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type viewmodels:CloseProgramViewModel}">
+                    <views:CloseProgram/>
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>

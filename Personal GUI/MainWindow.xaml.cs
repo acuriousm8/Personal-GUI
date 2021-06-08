@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Personal_GUI
@@ -9,14 +10,30 @@ namespace Personal_GUI
     public partial class MainWindow : Window
     {
         int click_count;
+        bool cleanup_program = false;
+
         public MainWindow()
         {
             InitializeComponent();
+            create_main_program_files();
         }
 
+        private void create_main_program_files()
+        {
+            string[] sub_folder = { "Auto_typer", "Hue", "Auto_application_close" };
+            System.IO.Directory.CreateDirectory($@"C:\Users\{Environment.UserName}\AppData\Roaming\Personal_GUI");
+            foreach (string folder in sub_folder)
+            {
+                System.IO.Directory.CreateDirectory($@"C:\Users\{Environment.UserName}\AppData\Roaming\Personal_GUI\{folder}");
+            }
+        }
 
         private void close_program_button_Click(object sender, RoutedEventArgs e)
         {
+            if(cleanup_program)
+            {
+                System.IO.Directory.Delete($@"C:\Users\{Environment.UserName}\AppData\Roaming\");
+            }
             System.Windows.Application.Current.Shutdown();
         }
 
