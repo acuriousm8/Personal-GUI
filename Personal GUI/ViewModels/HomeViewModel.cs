@@ -11,11 +11,14 @@ namespace Personal_GUI.ViewModels
         public ICommand NavigateAutoTyperCommand { get; }
         public ICommand NavigateCloseProgramCommand { get; }
 
+        public ICommand NavigateHueLightsProgramCommand { get; }
+
         public HomeViewModel(NavigationStore navigationStore)
         {
             NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
             NavigateAutoTyperCommand = new NavigateCommand<AutoTyperViewModel>(navigationStore, () => new AutoTyperViewModel(navigationStore));
             NavigateCloseProgramCommand = new NavigateCommand<CloseProgramViewModel>(navigationStore, () => new CloseProgramViewModel(navigationStore));
+            NavigateHueLightsProgramCommand = new NavigateCommand<HueLightsViewModel>(navigationStore, () => new HueLightsViewModel(navigationStore));
         }
 
     }

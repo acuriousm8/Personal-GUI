@@ -5,12 +5,29 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Personal_GUI</RootNamespace>
     <UseWPF>true</UseWPF>
+    <Version>0.0.1</Version>
+    <Authors>PMNH11</Authors>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Costura.Fody" Version="5.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Discord.Net" Version="2.4.0" />
+    <PackageReference Include="Fody" Version="6.5.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="InputSimulator" Version="1.0.4" />
     <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Q42.HueApi" Version="3.18.1" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\HueLightsSubPages\" />
   </ItemGroup>
 
 </Project>

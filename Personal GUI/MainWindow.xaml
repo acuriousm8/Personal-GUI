@@ -88,6 +88,11 @@
                 <DataTemplate DataType="{x:Type viewmodels:CloseProgramViewModel}">
                     <views:CloseProgram/>
                 </DataTemplate>
+
+                <DataTemplate DataType="{x:Type viewmodels:HueLightsViewModel}">
+                    <views:HueLights/>
+                </DataTemplate>
+                
             </ContentControl.Resources>
         </ContentControl>
         

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Personal_GUI.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="Black">
     <Grid>
@@ -29,7 +30,56 @@
             <RowDefinition Height="85*"/>
         </Grid.RowDefinitions>
 
-        <ListView x:Name="All_process_list" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="5" ItemsSource="{Binding running_Programs}"/>
+        <ListView x:Name="All_process_list" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="5" Margin="10,0,0,0" FontSize="12">
+        </ListView>
+
+        <Label Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="3" Content="" Foreground="White" HorizontalContentAlignment="Center" FontSize="18" x:Name="Status_label" Margin="0,0,0,10"/>
+
+        <StackPanel Grid.Row="0" Grid.Column="5"  Grid.ColumnSpan="3" Grid.RowSpan="5" Margin="0,25,0,0" VerticalAlignment="Bottom">
+
+            <Label Content="Sorting" Foreground="White" HorizontalContentAlignment="Center" FontSize="18"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="3" Background="{x:Null}" BorderBrush="White" materialDesign:ButtonAssist.CornerRadius="10" Margin="0,0,10,0" Height="50" Click="Normal_sorting_button">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Normal" Foreground="White" FontSize="16"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="3" Background="{x:Null}" BorderBrush="White" materialDesign:ButtonAssist.CornerRadius="10" Height="50" Click="Alphabetical_sorting_button">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Alphabetical" Foreground="White" FontSize="16"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <TextBox x:Name="program_close_text_box" MinWidth="250" Height="45" materialDesign:HintAssist.Hint="Type name to close" Foreground="White" materialDesign:HintAssist.IsFloating="False" 
+                     materialDesign:HintAssist.Foreground="White" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" ToolTip="Type a program here to close" 
+                     Style="{DynamicResource MaterialDesignTextBox}" Margin="25"/>
+            
+            <StackPanel Visibility="{Binding testing_options}">
+                <Button Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="3" Background="{x:Null}" BorderBrush="White" materialDesign:ButtonAssist.CornerRadius="10" Margin="35,0,25,10" Height="50" Click="Clear_list_button">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Clear list" Foreground="White" FontSize="24"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            
+            <Button Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="3" VerticalAlignment="Bottom" Background="{x:Null}" BorderBrush="White" materialDesign:ButtonAssist.CornerRadius="10" Margin="35,0,25,10" Height="50" Click="Refresh_list_button">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Refresh" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Width="35" Height="35"/>
+                    <Label Content="Refresh List" Foreground="White" FontSize="24"/>
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="3" VerticalAlignment="Bottom" Background="{x:Null}" BorderBrush="White" materialDesign:ButtonAssist.CornerRadius="10" Margin="35,0,25,10" Height="50" Click="Kill_proc_button">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Close" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Width="35" Height="35"/>
+                    <Label Content="End Program" Foreground="White" FontSize="24"/>
+                </StackPanel>
+            </Button>
+            
+        </StackPanel>
 
 
 

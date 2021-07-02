@@ -57,7 +57,7 @@ namespace Personal_GUI
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             click_count = 0;
-            click_count = (click_count + e.ClickCount);
+            click_count = click_count + e.ClickCount;
 
             if (click_count == 2)
             {
