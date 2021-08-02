@@ -3,10 +3,109 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              xmlns:local="clr-namespace:Personal_GUI.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="Black">
+
+
     <Grid>
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ListView x:Name="AudioDeviceList" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="6" Foreground="White" SelectionMode="Single">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Set Active" Click="Set_active_button"/>
+                    <MenuItem Header="Add Favorite" Click="Add_Favorites_click"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
+
+        <StackPanel x:Name="Favorites_stack_panel" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="4" Margin="25,25,25,25">
+
+            <TextBlock Text="Favorites" Foreground="White" FontSize="18" HorizontalAlignment="Center"/>
+
+            <Button x:Name="favorite_button_1" Click="Favorites_1_button_click" BorderBrush="White" Background="{x:Null}" Height="40" HorizontalContentAlignment="Center" Margin="0, 10, 0, 0" Visibility="Hidden">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Set Active" Click="Favorites_1_button_click"/>
+                        <MenuItem Header="Remove Favorite" Click="Favorites_button_1_favorite"/>
+                    </ContextMenu>
+                </Button.ContextMenu>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Favorite 1" x:Name="Favorites_1_button_text"/>
+                    <materialDesign:PackIcon Kind="Star" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="favorite_button_2" Click="Favorites_2_button_click" BorderBrush="White" Background="{x:Null}" Height="40" HorizontalContentAlignment="Center" Margin="0, 10, 0, 0" Visibility="Hidden">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Set Active" Click="Favorites_2_button_click"/>
+                        <MenuItem Header="Remove Favorite" Click="Favorites_button_2_favorite"/>
+                    </ContextMenu>
+                </Button.ContextMenu>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Favorite 2" x:Name="Favorites_2_button_text"/>
+                    <materialDesign:PackIcon Kind="Star" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="favorite_button_3" Click="Favorites_3_button_click" BorderBrush="White" Background="{x:Null}" Height="40" HorizontalContentAlignment="Center" Margin="0, 10, 0, 0" Visibility="Hidden">
+                <Button.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Set Active" Click="Favorites_3_button_click"/>
+                        <MenuItem Header="Remove Favorite" Click="Favorites_button_3_favorite"/>
+                    </ContextMenu>
+                </Button.ContextMenu>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Favorite 3" x:Name="Favorites_3_button_text"/>
+                    <materialDesign:PackIcon Kind="Star" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="3" Grid.Column="4" Grid.RowSpan="3" Grid.ColumnSpan="3" VerticalAlignment="Bottom"  materialDesign:ButtonAssist.CornerRadius="10" Margin="25,0,25,25">
+
+            <Button Grid.Column="5" Click="Set_active_button" BorderBrush="White" Background="{x:Null}" Height="40" HorizontalContentAlignment="Center">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Set Active"/>
+                    <materialDesign:PackIcon Kind="Check" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Column="5" Click="Add_Favorites_click" BorderBrush="White" Background="{x:Null}" Height="40" HorizontalContentAlignment="Center" Margin="0,15,0,0" Visibility="Collapsed">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Add favorite"/>
+                    <materialDesign:PackIcon Kind="Favorite" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </Button>
             
+            <Button Grid.Column="5" Click="Refresh_list_button" BorderBrush="White" Background="{x:Null}" Height="40" HorizontalContentAlignment="Center" Margin="0,15,0,0">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Refresh List"/>
+                    <materialDesign:PackIcon Kind="Refresh" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
     </Grid>
 </UserControl>

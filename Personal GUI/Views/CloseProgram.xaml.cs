@@ -41,9 +41,9 @@ namespace Personal_GUI.Views
     /// </summary>
     public partial class CloseProgram : UserControl
     {
-        private readonly NavigationStore _store;
+        NavigationStore navigationStore = new NavigationStore();
         List<string> procs_added = new List<string>();
-        int sort = 1; //1: none 2: alphabetical
+        int sort = 2; //1: none 2: alphabetical
         GFG alpha = new GFG();
 
 
@@ -51,15 +51,14 @@ namespace Personal_GUI.Views
         {
             InitializeComponent();
             All_process_list.Items.Add("Loading Processes...");
-
             get_running_procs();
+
             //running_procs_reoccuring();
         }
 
         void running_procs_reoccuring() //un-used
         {
-            var test = _store.CurrentViewModel;
-            while (_store.CurrentViewModel == new CloseProgramViewModel(_store))
+            while (navigationStore.CurrentViewModel == new CloseProgramViewModel(navigationStore))
             {
                 procs_added.Clear();
                 foreach (Process proc in Process.GetProcesses())
@@ -78,26 +77,32 @@ namespace Personal_GUI.Views
 
         void get_running_procs()
         {
-            All_process_list.Items.Clear();
-            procs_added.Clear();
-            foreach (Process proc in Process.GetProcesses())
+            new Thread(() =>
             {
-                if (!procs_added.Contains(proc.ProcessName))
+                this.Dispatcher.Invoke(() =>
                 {
-                    procs_added.Add(proc.ProcessName);
-                }
-            }
-            if (sort == 2)
-            {
-                procs_added.Sort(alpha);
-            }
-            foreach(string name in procs_added)
-            {
-                ListViewItem item = new ListViewItem();
-                item.Foreground = System.Windows.Media.Brushes.White;
-                item.Content = name;
-                All_process_list.Items.Add(item);
-            }
+                    All_process_list.Items.Clear();
+                    procs_added.Clear();
+                    foreach (Process proc in Process.GetProcesses())
+                    {
+                        if (!procs_added.Contains(proc.ProcessName))
+                        {
+                            procs_added.Add(proc.ProcessName);
+                        }
+                    }
+                    if (sort == 2)
+                    {
+                        procs_added.Sort(alpha);
+                    }
+                    foreach(string name in procs_added)
+                    {
+                        ListViewItem item = new ListViewItem();
+                        item.Foreground = System.Windows.Media.Brushes.White;
+                        item.Content = name;
+                        All_process_list.Items.Add(item);
+                    }
+                });
+            }).Start();
         }
 
         string kill(string program_name)
@@ -176,7 +181,10 @@ namespace Personal_GUI.Views
                 {
                     foreach (ListViewItem item in All_process_list.SelectedItems)
                     {
-                        Status_label.Content = kill(item.Content.ToString());
+                        new Thread(() =>
+                       {
+                           this.Dispatcher.Invoke(() => { Status_label.Content = kill(item.Content.ToString()); });
+                       }).Start();
                     }
                 }
                 catch
@@ -184,8 +192,14 @@ namespace Personal_GUI.Views
             }
             else
             {
-                Status_label.Content = kill(program_close_text_box.Text);
-                program_close_text_box.Text = "";
+                new Thread(() =>
+                {
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        Status_label.Content = kill(program_close_text_box.Text);
+                        program_close_text_box.Text = "";
+                    });
+                }).Start();
             }
             get_running_procs();
         }

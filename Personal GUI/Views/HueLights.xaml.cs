@@ -1,26 +1,16 @@
-﻿using Q42.HueApi;
+﻿using Newtonsoft.Json.Linq;
+using Q42.HueApi;
 using Q42.HueApi.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
-using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Configuration;
-using System.Collections.Specialized;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Linq;
-using Newtonsoft.Json.Linq;
-using System.Text.Json;
-using System.Net.Http;
 
 namespace Personal_GUI.Views
 {
@@ -48,6 +38,7 @@ namespace Personal_GUI.Views
         public HueLights()
         {
             InitializeComponent();
+            startupAsync();
         }
 
         bool Check_ip(string ip)
@@ -55,7 +46,7 @@ namespace Personal_GUI.Views
             try
             {
                 string html = new WebClient().DownloadString($@"http://{ip}/description.xml");
-                if (html.Contains("philips hue bridge"))
+                if (html.ToLower().Contains("philips hue bridge"))
                 {
                     return true;
                 }
@@ -70,11 +61,12 @@ namespace Personal_GUI.Views
             }
         }
 
-        void startup()
+        async Task startupAsync()
         {
             if(System.IO.File.Exists($@"{local_path}\logged_info.json"))
             {
-                Hue_lights_info logged_info = JsonSerializer.Deserialize<Hue_lights_info>(File.ReadAllText($@"{local_path}\logged_info.json"));
+                string json_file_to_string = File.ReadAllText($@"{local_path}\logged_info.json");
+                var logged_info = JsonSerializer.Deserialize<Hue_lights_info>(json_file_to_string);
 
                 if(logged_info.auto_innit)
                 {
@@ -84,16 +76,36 @@ namespace Personal_GUI.Views
                     }    
                     else
                     {
-                        Find_bridgeAsync();
+                        await Find_bridgeAsync();
                     }
                     if (logged_info.bridge_appkey != null)
                     {
                         appkey = logged_info.bridge_appkey;
                         client = new LocalHueClient(bridge_ip);
                         client.Initialize(appkey);
+                        get_lights();
                     }
                 }
             }
+        }
+
+        async Task log_to_fileAsync()
+        {
+            try
+            {
+                System.IO.File.Delete($@"{local_path}\logged_info.json");
+            }
+            catch
+            { }
+            var lights_Info = new Hue_lights_info
+            {
+                auto_innit = true,
+                bridge_ip_address = bridge_ip,
+                bridge_appkey = appkey
+            };
+            using FileStream createStream = File.Create($@"{local_path}\logged_info.json");
+            await JsonSerializer.SerializeAsync(createStream, lights_Info);
+            await createStream.DisposeAsync();
         }
 
         async Task Find_bridgeAsync()
@@ -225,6 +237,7 @@ namespace Personal_GUI.Views
         {
             client = new LocalHueClient(bridge_ip);
             client.Initialize(appkey);
+            log_to_fileAsync();
         }
 
         private void get_light_count_button(object sender, RoutedEventArgs e)

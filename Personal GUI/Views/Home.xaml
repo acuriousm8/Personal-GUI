@@ -29,7 +29,7 @@
             <RowDefinition Height="85*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="6" Margin="25">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="6" Margin="25">
             
             <Button BorderBrush="White" Background="{x:Null}" MinHeight="50" Command="{Binding NavigateAutoTyperCommand}">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -50,6 +50,20 @@
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Label Content="Hue Lights" Foreground="White"/>
                     <materialDesign:PackIcon Kind="Lightbulb" Foreground="White" HorizontalAlignment="Center" Width="25" Height="20"/>
+                </StackPanel>
+            </Button>
+            
+            <Button BorderBrush="White" Background="{x:Null}" MinHeight="50" Command="{Binding NavigateAudioOutputProgramCommand}" Margin="25,0,0,0">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Label Content="Audio Output" Foreground="White"/>
+                    <materialDesign:PackIcon Kind="Audio" Foreground="White" HorizontalAlignment="Center" Width="25" Height="20"/>
+                </StackPanel>
+            </Button>
+
+            <Button BorderBrush="White" Background="{x:Null}" MinHeight="50" Command="{Binding NavigateRokuRemoteCommand}" Margin="25,0,0,0">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Label Content="Roku Remote" Foreground="White"/>
+                    <materialDesign:PackIcon Kind="Remote" Foreground="White" HorizontalAlignment="Center" Width="25" Height="20"/>
                 </StackPanel>
             </Button>
         </StackPanel>

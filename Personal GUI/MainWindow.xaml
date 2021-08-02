@@ -92,7 +92,15 @@
                 <DataTemplate DataType="{x:Type viewmodels:HueLightsViewModel}">
                     <views:HueLights/>
                 </DataTemplate>
-                
+
+                <DataTemplate DataType="{x:Type viewmodels:AudioSwitcherViewModel}">
+                    <views:AudioSwitcher/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type viewmodels:RokuControllerViewModel}">
+                    <views:RokuController/>
+                </DataTemplate>
+
             </ContentControl.Resources>
         </ContentControl>
         

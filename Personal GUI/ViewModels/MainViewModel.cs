@@ -17,7 +17,7 @@ namespace Personal_GUI.ViewModels
 
             _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
 
-            NavigateHomeCommand = new NavigateCommand<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore));
+            NavigateHomeCommand = new NavigateCommand<HomeViewModel>(new Services.NavigationService<HomeViewModel>(navigationStore, () => new HomeViewModel(navigationStore)));
         }
 
         private void OnCurrentViewModelChanged()

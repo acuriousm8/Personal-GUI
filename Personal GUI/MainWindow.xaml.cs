@@ -20,7 +20,7 @@ namespace Personal_GUI
 
         private void create_main_program_files()
         {
-            string[] sub_folder = { "Auto_typer", "Hue", "Auto_application_close" };
+            string[] sub_folder = { "Auto_typer", "Hue", "Auto_application_close", "Audio_Switcher"};
             System.IO.Directory.CreateDirectory($@"C:\Users\{Environment.UserName}\AppData\Roaming\Personal_GUI");
             foreach (string folder in sub_folder)
             {

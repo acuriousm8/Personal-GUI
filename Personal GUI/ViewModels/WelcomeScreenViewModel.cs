@@ -13,7 +13,7 @@ namespace Personal_GUI.ViewModels
 
         public WelcomeScreenViewModel(NavigationStore navigationStore)
         {
-            NavigateHomeCommand = new NavigateCommand<WelcomeScreenViewModel>(navigationStore, () => new WelcomeScreenViewModel());
+            NavigateHomeCommand = new NavigateCommand<WelcomeScreenViewModel>(new Services.NavigationService<WelcomeScreenViewModel>(navigationStore, () => new WelcomeScreenViewModel(navigationStore)));
         }
 
         public WelcomeScreenViewModel()

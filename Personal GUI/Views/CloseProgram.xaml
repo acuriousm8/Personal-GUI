@@ -31,6 +31,11 @@
         </Grid.RowDefinitions>
 
         <ListView x:Name="All_process_list" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="5" Margin="10,0,0,0" FontSize="12">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="End Program" Click="Kill_proc_button"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
         </ListView>
 
         <Label Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="3" Content="" Foreground="White" HorizontalContentAlignment="Center" FontSize="18" x:Name="Status_label" Margin="0,0,0,10"/>
